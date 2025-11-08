@@ -36,9 +36,10 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
+      gap: 16px;
       width: 90%;
       max-width: 1200px;
+      margin-bottom: 2rem;
     }
     .gallery img {
       width: 100%;
@@ -90,6 +91,23 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
+    /* Home Button */
+    .home-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .home-btn:hover {
+      background: #5f8bff;
+      transform: scale(1.05);
+    }
+
     footer {
       width: 100%;
       text-align: center;
@@ -136,6 +154,8 @@
       });
     </script>
   </div>
+
+  <a href="index.html" class="home-btn">Home</a>
 
   <div id="lightboxes">
     <script>
