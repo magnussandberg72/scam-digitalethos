@@ -23,9 +23,15 @@
     }
     h1 {
       text-align: center;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0 0.5rem 0;
       font-size: 1.8rem;
       letter-spacing: 1px;
+    }
+    p.subtitle {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #9ba4b5;
+      font-size: 0.95rem;
     }
     .gallery {
       display: grid;
@@ -83,46 +89,77 @@
     .close:hover {
       background: rgba(255, 255, 255, 0.2);
     }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+      font-size: 0.9rem;
+      background: var(--card);
+      color: #a8b2c3;
+      border-top: 1px solid #1e2431;
+    }
   </style>
 </head>
 <body>
   <h1>Digital Ethos – Gallery</h1>
+  <p class="subtitle">Evidence Archive – 46 Photos</p>
+
   <div class="gallery">
-    <!-- Thumbnails -->
-    <!-- Replace 43 with however many you have -->
-    <!-- You can rename files; just match the names -->
-    <!-- Example: 1.jpg, 2.jpg, 3.jpg ... -->
     <script>
       const folder = "public/digitalethos/";
-      const totalImages = 43;
-      const gallery = document.currentScript.parentElement;
-      for (let i = 1; i <= totalImages; i++) {
-        const thumb = document.createElement("a");
-        thumb.href = "#img" + i;
-        const img = document.createElement("img");
-        img.src = `${folder}${i}.jpg`;
-        img.alt = `Image ${i}`;
-        thumb.appendChild(img);
-        gallery.appendChild(thumb);
+      const images = [];
+
+      // Add 1.PNG to 35.PNG
+      for (let i = 1; i <= 35; i++) {
+        images.push(`${i}.PNG`);
       }
+
+      // Add 36_digitalethos.jpg
+      images.push("36_digitalethos.jpg");
+
+      // Add 37.PNG to 46.PNG
+      for (let i = 37; i <= 46; i++) {
+        images.push(`${i}.PNG`);
+      }
+
+      const gallery = document.currentScript.parentElement;
+      images.forEach((name, index) => {
+        const link = document.createElement("a");
+        link.href = "#img" + index;
+        const img = document.createElement("img");
+        img.src = `${folder}${name}`;
+        img.alt = name;
+        link.appendChild(img);
+        gallery.appendChild(link);
+      });
     </script>
   </div>
 
-  <!-- Lightboxes -->
   <div id="lightboxes">
     <script>
+      const imgs = [
+        ...Array.from({length: 35}, (_, i) => `${i+1}.PNG`),
+        "36_digitalethos.jpg",
+        ...Array.from({length: 10}, (_, i) => `${37+i}.PNG`)
+      ];
       const lbContainer = document.currentScript.parentElement;
-      for (let i = 1; i <= 43; i++) {
+      imgs.forEach((name, index) => {
         const div = document.createElement("div");
         div.className = "lightbox";
-        div.id = "img" + i;
+        div.id = "img" + index;
         div.innerHTML = `
           <a href="#" class="close">&times;</a>
-          <img src="public/digitalethos/${i}.jpg" alt="Image ${i}" />
+          <img src="public/digitalethos/${name}" alt="${name}" />
         `;
         lbContainer.appendChild(div);
-      }
+      });
     </script>
   </div>
+
+  <footer>
+    © 2025 Magnus T Gustav Sandberg — Digital Ethos Evidence Archive
+  </footer>
 </body>
 </html>
